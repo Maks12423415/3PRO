@@ -1,0 +1,40 @@
+// Importujemy komponent Link z Next.js, który służy do nawigacji między stronami
+import Link from "next/link";
+
+// Importujemy nasz komponent ItemList, który prawdopodobnie renderuje listę elementów
+import ItemList from "../components/ItemList";
+
+// Importujemy style CSS z lokalnego pliku modułowego
+import styles from "./index.module.css";
+
+// Importujemy nasz komponent TextBlock, który znajduje się w pliku Footer.js
+import TextBlock from "../components/TextBlock";
+
+import Footer from "../components/Footer"; // Import komponentu Footer
+
+import ImageWithText from "../components/ImageWithText";
+
+// Eksportujemy funkcję HomePage jako domyślny eksport tego modułu
+export default function HomePage() {
+  // Definiujemy tablicę z ulubionymi filmami
+  const favoriteMovies = ["film1", "film2", "film3"];
+
+  // Renderujemy stronę główną
+  return (
+    <div>
+      {/* Nagłówek z klasą CSS z modułowego pliku stylów */}
+      <TextBlock
+        heading="Informacje o stronie"
+        content="Jest to strona o mnie!"
+      />
+      <h2>Ulubione filmy:</h2>
+      {/* Wywołujemy komponent ItemList, przekazując mu tablicę ulubionych filmów */}
+      <ItemList items={favoriteMovies} />
+      {/* Link do strony "about", który pozwala na nawigację do innej strony w aplikacji */}
+      <Link href="/about">Moje hobby</Link> <br />
+      <ImageWithText imageUrl="../../components/pies.jpg" text="Pies" />
+      {/* Wywołujemy komponent Footer */}
+      <Footer />
+    </div>
+  );
+}
