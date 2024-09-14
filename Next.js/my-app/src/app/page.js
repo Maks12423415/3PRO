@@ -18,6 +18,8 @@ import ImageWithText from "../components/ImageWithText";
 export default function HomePage() {
   // Definiujemy tablicę z ulubionymi filmami
   const favoriteMovies = ["film1", "film2", "film3"];
+  const imageUrl =
+    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ3vrTUU3CKbUDThpm8aZzFXdTmai6PodNfXA&s";
 
   // Renderujemy stronę główną
   return (
@@ -32,7 +34,7 @@ export default function HomePage() {
       <ItemList items={favoriteMovies} />
       {/* Link do strony "about", który pozwala na nawigację do innej strony w aplikacji */}
       <Link href="/about">Moje hobby</Link> <br />
-      <ImageWithText imageUrl="../../components/pies.jpg" text="Pies" />
+      <ImageWithText imageUrl={imageUrl} text={"Pies"} />
       {/* Wywołujemy komponent Footer */}
       <Footer />
     </div>
