@@ -34,9 +34,11 @@ export default function HomePage() {
       <ItemList items={favoriteMovies} />
       {/* Link do strony "about", który pozwala na nawigację do innej strony w aplikacji */}
       <Link href="/about">Moje hobby</Link> <br />
+      <Link href="/contact">Kontakt</Link>
       <ImageWithText imageUrl={imageUrl} text={"Pies"} />
       {/* Wywołujemy komponent Footer */}
       <Footer />
+      <h3>Wykonawca: Maks Samborski</h3>
     </div>
   );
 }
