@@ -14,12 +14,22 @@ import Footer from "../components/Footer"; // Import komponentu Footer
 
 import ImageWithText from "../components/ImageWithText";
 
+import SimpleForm from "@/components/SimpleForm";
+
+import ConditionalDisplay from "@/components/ConditionalDisplay";
+
+import ListWithObjects from "@/components/ListWithObjects";
+
 // Eksportujemy funkcję HomePage jako domyślny eksport tego modułu
 export default function HomePage() {
   // Definiujemy tablicę z ulubionymi filmami
   const favoriteMovies = ["film1", "film2", "film3"];
   const imageUrl =
     "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ3vrTUU3CKbUDThpm8aZzFXdTmai6PodNfXA&s";
+  const table = [
+    { name: "Maks", value: 16 },
+    { name: "Dawid", value: 17 },
+  ];
 
   // Renderujemy stronę główną
   return (
@@ -35,9 +45,14 @@ export default function HomePage() {
       {/* Link do strony "about", który pozwala na nawigację do innej strony w aplikacji */}
       <Link href="/about">Moje hobby</Link> <br />
       <Link href="/contact">Kontakt</Link>
+      <br />
+      <Link href="/o_nas">O nas</Link>
       <ImageWithText imageUrl={imageUrl} text={"Pies"} />
       {/* Wywołujemy komponent Footer */}
       <Footer />
+      <SimpleForm placeholder="Podaj imie..." value="text" label="Imie: " />
+      <ConditionalDisplay isVisible={true} />
+      <ListWithObjects items={table} />
       <h3>Wykonawca: Maks Samborski</h3>
     </div>
   );
