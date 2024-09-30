@@ -1,6 +1,7 @@
+"use client";
 // Importy z Next.js i komponentów z aplikacji
 import Link from "next/link"; // Komponent Link do nawigacji między stronami
-
+import { useState, useEffect } from "react";
 // Importy komponentów z lokalnych plików
 import ItemList from "../components/ItemList";
 import TextBlock from "../components/TextBlock";
@@ -9,6 +10,8 @@ import ImageWithText from "../components/ImageWithText";
 import SimpleForm from "@/components/SimpleForm";
 import ConditionalDisplay from "@/components/ConditionalDisplay";
 import ListWithObjects from "@/components/ListWithObjects";
+import DynamicButton from "@/components/DynamicButton";
+import ThemeSwitcher from "@/components/ThemeSwitcher";
 
 // Importy stylów CSS
 import styles from "./index.module.css"; // Stylowanie dla tego komponentu
@@ -23,7 +26,26 @@ export default function HomePage() {
     { name: "Maks", value: 16 },
     { name: "Dawid", value: 17 },
   ];
+  const on_click = function () {
+    console.log("Kliknięto na stronie głównej");
+  };
 
+  const [theme, setTheme] = useState(null);
+
+  const handleThemeChange = (theme) => {
+    setTheme(theme);
+  };
+
+  useEffect(() => {
+    if (theme) {
+      document.body.classList.add(
+        theme === "light" ? "light-theme" : "dark-theme"
+      );
+      document.body.classList.remove(
+        theme === "light" ? "dark-theme" : "light-theme"
+      );
+    }
+  }, [theme]);
   // Renderujemy stronę główną
   return (
     <div>
@@ -42,6 +64,10 @@ export default function HomePage() {
         <Link href="/about">Moje hobby</Link> <br />
         <Link href="/contact">Kontakt</Link> <br />
         <Link href="/o_nas">O nas</Link>
+        <br />
+        <Link href={"/produkty"}>Produkty</Link>
+        <br />
+        <Link href={"/uslugi"}>Usługi</Link>
       </nav>
 
       {/* Wyświetlenie obrazka z tekstem przy użyciu komponentu ImageWithText */}
@@ -58,6 +84,11 @@ export default function HomePage() {
 
       {/* Sekcja z komponentem Footer */}
       <Footer />
+
+      <DynamicButton label={"Kliknij"} onClick={on_click} />
+      <br />
+
+      <ThemeSwitcher onThemeChange={handleThemeChange} />
 
       {/* Dodanie autora strony */}
       <h3>Wykonawca: Maks Samborski</h3>
