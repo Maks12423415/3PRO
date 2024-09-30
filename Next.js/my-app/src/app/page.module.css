@@ -1,0 +1,28 @@
+/* src/app/HomePage.module.css */
+.heading {
+  color: blue;
+}
+
+.paragraph {
+  font-size: 18px;
+}
+
+body.dark-theme {
+  background-color: #404040 !important;
+  color: #ffffff !important;
+}
+
+body.light-theme {
+  background-color: #ffffff !important;
+  color: #000000 !important;
+}
+
+.light-theme h1,
+.dark-theme h1 {
+  font-weight: bold;
+}
+
+.light-theme a,
+.dark-theme a {
+  color: inherit;
+}

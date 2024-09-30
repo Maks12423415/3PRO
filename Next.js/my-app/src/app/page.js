@@ -2,6 +2,7 @@
 // Importy z Next.js i komponentów z aplikacji
 import Link from "next/link"; // Komponent Link do nawigacji między stronami
 import { useState, useEffect } from "react";
+
 // Importy komponentów z lokalnych plików
 import ItemList from "../components/ItemList";
 import TextBlock from "../components/TextBlock";
@@ -14,7 +15,7 @@ import DynamicButton from "@/components/DynamicButton";
 import ThemeSwitcher from "@/components/ThemeSwitcher";
 
 // Importy stylów CSS
-import styles from "./index.module.css"; // Stylowanie dla tego komponentu
+import styles from "./page.module.css"; // Stylowanie dla tego komponentu
 
 // Eksportujemy funkcję HomePage jako domyślny eksport tego modułu
 export default function HomePage() {
@@ -33,22 +34,21 @@ export default function HomePage() {
   const [theme, setTheme] = useState(null);
 
   const handleThemeChange = (theme) => {
+    console.log("Motyw zmieniony na:", theme);
     setTheme(theme);
   };
 
   useEffect(() => {
-    if (theme) {
-      document.body.classList.add(
-        theme === "light" ? "light-theme" : "dark-theme"
-      );
-      document.body.classList.remove(
-        theme === "light" ? "dark-theme" : "light-theme"
-      );
-    }
-  }, [theme]);
+    const savedTheme = localStorage.getItem("activeTheme") || "light";
+    setTheme(savedTheme);
+    document.body.classList.add(
+      savedTheme === "light" ? "light-theme" : "dark-theme"
+    );
+  }, []);
+
   // Renderujemy stronę główną
   return (
-    <div>
+    <div className={styles.body}>
       {/* Sekcja z komponentem TextBlock, który pokazuje nagłówek i treść */}
       <TextBlock
         heading="Informacje o stronie"
