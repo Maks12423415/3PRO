@@ -34,7 +34,7 @@ export default function Page4() {
                 {
                     // Iterujemy po liście items i wyświetlamy każdy element w osobnym <li>
                     items.map((item, index) => (
-                        <li key={index}>{item}</li>  // Każdy element musi mieć unikalny klucz (używamy indeksu)
+                        <li className='border-current' key={index}>{item}</li>  // Każdy element musi mieć unikalny klucz (używamy indeksu)
                     ))
                 }
             </ul>
