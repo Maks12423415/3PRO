@@ -2,7 +2,7 @@
 import { useState } from "react"
 
 
-export default function zadanie1(){
+export default function Zadanie1(){
 
 const [status, setStatus] = useState("start")
 
