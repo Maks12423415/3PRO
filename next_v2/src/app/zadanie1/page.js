@@ -1,32 +1,23 @@
-"use client"
-import { useState } from "react"
+"use client";
+import { useState } from "react";
 
+export default function Zadanie1() {
+  // Stan przechowujący aktualny status ("start" lub "stop")
+  const [status, setStatus] = useState("start");
 
-export default function Zadanie1(){
+  // Funkcja zmieniająca status między "start" a "stop"
+  function handleStatus() {
+    if (status == "stop") setStatus("start");
+    else setStatus("stop");
+  }
 
-const [status, setStatus] = useState("start")
+  return (
+    <>
+      {/* Przycisk do zmiany statusu */}
+      <button onClick={handleStatus}>Zmien status</button>
 
-function handleStatus(){
-    
-
-    if(status == "stop")
-        setStatus("start")
-    else
-    setStatus("stop")
-}
-
-
-    return(
-<>
-
-
-<button onClick={handleStatus}>Zmien status</button>
-<h1>
-{status}
-</h1>
-
-
-
-</>
-    )
+      {/* Wyświetlanie aktualnego statusu */}
+      <h1>{status}</h1>
+    </>
+  );
 }

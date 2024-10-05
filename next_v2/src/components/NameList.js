@@ -1,18 +1,17 @@
-export default function NameList({imie, color, ok}){
+export default function NameList({ imie, color, ok }) {
+  // Ustawienie klasy zależnie od statusu "ok"
+  var classname = "";
 
-    var classname = "";
+  if (ok) {
+    classname = "pl-2 w-1/2 border-2 bg-green-500";
+  } else {
+    classname = "pl-2 w-1/2 border-2 bg-red-500";
+  }
 
-    if(ok){
-        classname="pl-2 w-1/2 border-2 bg-green-500"
-    }else{
-        classname="pl-2 w-1/2 border-2"
-    }
-    return(
-        //var color = "text-"{color}"-500";
-        <div className={classname}> 
-            <h1 className={color}>{imie}</h1>
-        </div>
-
-
-    )
+  return (
+    <div className={`${color} ${classname}`}>
+      {/* Wyświetlanie imienia */}
+      <h1>{imie}</h1>
+    </div>
+  );
 }
