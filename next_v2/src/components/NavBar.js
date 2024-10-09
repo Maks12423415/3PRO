@@ -11,6 +11,11 @@ export default function NavBar() {
         { href: "/zadanie2", label: "Zadanie2", color: "text-yellow-500" }, // Link do zadania 2
         { href: "/zadanie3", label: "Zadanie3", color: "text-purple-500" }, // Link do zadania 3
         { href: "/zadanie4", label: "Zadanie4", color: "text-pink-500" }, // Link do zadania 4
+        { href: "/Dom1", label: "Dom1", color: "text-gray-500" }, // Link do strony "Dom1"
+        { href: "/Dom2", label: "Dom2", color: "text-white-500" },
+        { href: "/Dom3", label: "Dom3", color: "text-white-500" },
+        { href: "/Dom4", label: "Dom4", color: "text-white-500" },
+        { href: "/Dom5", label: "Dom5", color: "text-white-500" },
         {
           href: "/RestCountries",
           label: "RestCountries",
