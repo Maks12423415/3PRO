@@ -1,5 +1,6 @@
 "use client";
 import Country from "@/components/Country";
+import Link from "next/link";
 import { useEffect, useState } from "react";
 
 export default function RestCountries() {
@@ -32,7 +33,10 @@ export default function RestCountries() {
       <h1>{error && "Nie udało się pobrać danych"}</h1>
 
       {/* Mapowanie danych o krajach na komponenty */}
-      {data && data.map((kraj, index) => <Country key={index} kraj={kraj} />)}
+      {data && data.map((kraj, index) => 
+      <Link key={index} href={`/RestCountries/${kraj.cca2}`} >
+      <Country key={index} kraj={kraj} />
+      </Link>)}
     </div>
   );
 }
