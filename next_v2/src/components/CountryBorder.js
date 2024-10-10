@@ -62,13 +62,13 @@ export default function CountryBorder({ countrys }) {
           <Link
             key={index}
             href={`/RestCountries/${border.cca2}`} // Przekierowanie do strony kraju na podstawie jego kodu cca2
-            className={`${
-              minPopulation === border.population // Jeśli populacja kraju jest minimalna, dodajemy specjalną klasę
-                ? "border-red-500 border-5"
+            className={`border-2 p-2 ${
+              border.population === minPopulation // Jeśli populacja kraju jest minimalna, dodajemy czerwoną obwódkę
+                ? "border-red-500"
                 : ""
             } ${
-              maxPopulation === border.population // Jeśli populacja kraju jest maksymalna, dodajemy inną klasę
-                ? "border-green-500 border-5"
+              border.population === maxPopulation // Jeśli populacja kraju jest maksymalna, dodajemy zieloną obwódkę
+                ? "border-green-500"
                 : ""
             }`}
           >
