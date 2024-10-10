@@ -1,55 +1,81 @@
 "use client";
 
+// Importujemy potrzebne hooki z Reacta oraz komponenty
 import { useState, useEffect } from "react";
-import Country from "./Country";
-import Link from "next/link"
-export default function CountryBorder({countrys}){
+import Country from "./Country"; // Import komponentu Country do wyświetlenia szczegółów kraju
+import Link from "next/link"; // Import komponentu Link do obsługi nawigacji między stronami w Next.js
 
-    const [countries, setCountries] = useState(null)
-    const [error, setError] = useState(false)
-    const [minPopilation, setMinPopulation] = useState(0)
-    const [maxPopulation, setMaxPopulation] = useState(0)
+export default function CountryBorder({ countrys }) {
+  // Definiujemy stany dla krajów, błędu, minimalnej i maksymalnej populacji
+  const [countries, setCountries] = useState(null);
+  const [error, setError] = useState(false);
+  const [minPopulation, setMinPopulation] = useState(0);
+  const [maxPopulation, setMaxPopulation] = useState(0);
 
-    useEffect(() => {
-const getData = async ()=>{
+  useEffect(() => {
+    // Funkcja asynchroniczna do pobrania danych o krajach
+    const getData = async () => {
+      try {
+        const countriesData = []; // Tablica do przechowywania danych o krajach
 
-try{
+        // Dla każdego kraju w przekazanej tablicy countrys, pobieramy dane
+        for (const country of countrys) {
+          const response = await fetch(
+            `https://restcountries.com/v3.1/alpha/${country}`
+          );
+          const Json = await response.json(); // Konwertujemy odpowiedź na JSON
+          countriesData.push(Json[0]); // Dodajemy dane kraju do tablicy countriesData
+        }
 
-    const countriesData = [];
+        // Ustawiamy minimalną populację na podstawie pobranych danych
+        setMinPopulation(
+          Math.min(...countriesData.map((country) => country.population))
+        );
 
-for(const country of countrys){
-        const response = await fetch(`https://restcountries.com/v3.1/alpha/${country}`)
-        const Json = await response.json();
-        countriesData.push(Json[0])
-}
-    
-    setMinPopulation(Math.min(...countriesData.map(country=>country.population)))
-    setMaxPopulation(Math.max(...countriesData.map(country=>country.population)))
-    setCountries(countriesData)
-    
-}catch(error){
-    setError(true)
-    console.log(error)
-}
+        // Ustawiamy maksymalną populację na podstawie pobranych danych
+        setMaxPopulation(
+          Math.max(...countriesData.map((country) => country.population))
+        );
 
-}
-    getData()
+        // Ustawiamy stan countries na pobrane dane
+        setCountries(countriesData);
+      } catch (error) {
+        // W przypadku błędu ustawiamy stan błędu na true i logujemy błąd
+        setError(true);
+        console.log(error);
+      }
+    };
 
-}, [countrys])
+    // Wywołanie funkcji pobierającej dane
+    getData();
+  }, [countrys]); // Efekt będzie się wywoływał za każdym razem, gdy countrys się zmieni
 
+  return (
+    <>
+      {/* Wyświetlamy komunikat, jeśli nie udało się pobrać danych */}
+      {error && <h1>Nie udało się pobrać danych</h1>}
 
-
-    return(
-        <>
-
-            {error && <h1>Nie udało się pobrać danych</h1>}
-
-            {countries != null && countries.map((border, index)=>
-                <Link key={index} href={`/RestCountries/${border.cca2}`} className={`${minPopilation === countries.population ? "border-red-500" : maxPopulation ? "border-green-500": "" }`}>
-                    <Country  kraj={border} />
-                </Link>
-            )} 
-
-        </>
-    )
+      {/* Sprawdzamy, czy dane o krajach zostały pobrane i są dostępne */}
+      {countries != null &&
+        countries.map((border, index) => (
+          // Tworzymy link do szczegółowej strony o każdym kraju
+          <Link
+            key={index}
+            href={`/RestCountries/${border.cca2}`} // Przekierowanie do strony kraju na podstawie jego kodu cca2
+            className={`${
+              minPopulation === border.population // Jeśli populacja kraju jest minimalna, dodajemy specjalną klasę
+                ? "border-red-500 border-5"
+                : ""
+            } ${
+              maxPopulation === border.population // Jeśli populacja kraju jest maksymalna, dodajemy inną klasę
+                ? "border-green-500 border-5"
+                : ""
+            }`}
+          >
+            {/* Wyświetlamy komponent Country z przekazaniem danych o kraju */}
+            <Country kraj={border} />
+          </Link>
+        ))}
+    </>
+  );
 }

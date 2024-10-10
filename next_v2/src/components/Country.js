@@ -1,13 +1,9 @@
 "use client";
 import Image from "next/image";
 
-
 export default function Country({ kraj }) {
-
-
-
   return (
-    <div className="border-2 border-purple-500 p-4 w-[250px] h-[150px]">
+    <div className="border-2 border-white-500 p-4 w-[250px] h-[150px]">
       {/* Wyświetlanie flagi kraju */}
       <Image
         src={kraj.flags.png}
@@ -18,8 +14,9 @@ export default function Country({ kraj }) {
       />
 
       {/* Wyświetlanie nazwy kraju */}
-      <h1>{kraj.name.common}({kraj.cca2})</h1>
-      
+      <h1>
+        {kraj.name.common}({kraj.cca2})
+      </h1>
     </div>
   );
 }
