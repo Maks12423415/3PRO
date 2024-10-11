@@ -45,7 +45,7 @@ const zeruj= ()=>{
 
 
 <Dialog>
-  <DialogTrigger asChild><Button >Setting</Button></DialogTrigger>// asChild informuje że trigerem nie będzie teksty tylko jakiś inny element jsx
+   <DialogTrigger asChild><Button >Setting</Button></DialogTrigger> {/*asChild informuje że trigerem nie będzie teksty tylko jakiś inny element jsx */}
   <DialogContent>
     <DialogHeader className={"justify-center items-center"}>
       <DialogTitle>Are you absolutely sure?</DialogTitle>
