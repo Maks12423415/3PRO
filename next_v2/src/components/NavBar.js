@@ -16,6 +16,9 @@ export default function NavBar() {
         { href: "/Dom3", label: "Dom3", color: "text-white-500" },
         { href: "/Dom4", label: "Dom4", color: "text-white-500" },
         { href: "/Dom5", label: "Dom5", color: "text-white-500" },
+        { href: "/strona2", label: "Strona2", color: "text-teal-500" }, // Link do strony 2
+        { href : "/strona3", label: "Strona3"},
+        { href : "/strona4", label: "Strona4"},
         {
           href: "/RestCountries",
           label: "RestCountries",
