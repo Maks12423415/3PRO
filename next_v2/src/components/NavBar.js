@@ -19,6 +19,7 @@ export default function NavBar() {
         { href: "/strona2", label: "Strona2", color: "text-teal-500" }, // Link do strony 2
         { href : "/strona3", label: "Strona3"},
         { href : "/strona4", label: "Strona4"},
+        {href: "/News-api", label: "News"},
         {
           href: "/RestCountries",
           label: "RestCountries",
