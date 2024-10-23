@@ -1,8 +1,9 @@
+"use client";
 import Link from "next/link"; // Import komponentu Link do nawigacji między stronami
 
 export default function NavBar() {
   return (
-    <nav className="flex items-center justify-center space-x-4 p-6">
+    <nav className={`flex items-center justify-center space-x-4 p-6 `}>
       {/* Tworzymy tablicę obiektów z danymi linków: adres (href), etykieta (label) i kolor (color) */}
       {[
         { href: "/", label: "Home", color: "text-blue-500" }, // Link do strony głównej
@@ -17,9 +18,10 @@ export default function NavBar() {
         { href: "/Dom4", label: "Dom4", color: "text-white-500" },
         { href: "/Dom5", label: "Dom5", color: "text-white-500" },
         { href: "/strona2", label: "Strona2", color: "text-teal-500" }, // Link do strony 2
-        { href : "/strona3", label: "Strona3"},
-        { href : "/strona4", label: "Strona4"},
-        {href: "/News-api", label: "News"},
+        { href: "/strona3", label: "Strona3" },
+        { href: "/strona4", label: "Strona4" },
+        { href: "/News-api", label: "News" },
+        { href: "/Gold-api", label: "Gold" },
         {
           href: "/RestCountries",
           label: "RestCountries",
