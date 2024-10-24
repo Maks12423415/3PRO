@@ -82,7 +82,7 @@ return(
       <SheetDescription>
       <Image
             src={item.url}
-            alt={"kot"}
+            alt={item.id}
             width={item.width}
             height={100}
             className="max-h-[75vh] w-auto"
