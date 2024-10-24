@@ -22,6 +22,7 @@ export default function NavBar() {
         { href: "/strona4", label: "Strona4" },
         { href: "/News-api", label: "News" },
         { href: "/Gold-api", label: "Gold" },
+        {href: "/Kot", label: "Kot" },
         {
           href: "/RestCountries",
           label: "RestCountries",
