@@ -13,11 +13,17 @@ import {
   import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Button } from '@/components/ui/button';
+import { Pencil, ThumbsDown, ThumbsUp, Trash2 } from 'lucide-react';
+import EditItem from "@/components/EditItem"
+
+
+
 
 
 export default function pb(){
     const [data, setData] = useState([])
     const [dane, setDane] = useState({nazwa:null, cena:null, opis:null})
+    const [zdjecie, setZdjecie] = useState(null)
     
 
     const form = (e, nazwa)=>{
@@ -29,8 +35,25 @@ export default function pb(){
         )}))
     }
 
+
+    const handleZdjecie = (e)=>{
+
+        console.log(e)
+        setZdjecie(e.target.files[0])
+
+    }
+
     const zapisz = async ()=>{
-        const record = await pb.collection('gry').create(dane);
+
+
+        const formdata = new FormData()
+
+        formdata.append('nazwa', dane.nazwa)
+        formdata.append('cena', dane.cena)
+        formdata.append('opis', dane.opis)
+        formdata.append('zdjecie', zdjecie)
+
+        const record = await pb.collection('gry').create(formdata);
         setData((prevData)=>{
             return(
                 [ record, ...prevData]
@@ -38,6 +61,24 @@ export default function pb(){
         })
     }
 
+
+
+
+
+    const kill = async (id)=>{
+        try{
+    const usun = await pb.collection('gry').delete(id);
+    setData((prev)=>(
+        
+            prev.filter(item=>{
+              return(  item.id != id
+            )})
+        
+    ))
+}catch(err){
+    console.log(err)
+}
+    }
 
     const pb = new PocketBase('http://172.16.15.149:8080');
 
@@ -66,6 +107,51 @@ getData();
     },[])
 
 
+
+    const updateItem= (item)=>{
+        console.log(item)
+        
+        var tmpDate = [...data]
+        var index = null
+
+        for(let i in data){
+            if(item.id == tmpDate[i].id){
+                index = i
+            }
+        }
+
+        tmpDate[index] = item
+
+        setData(tmpDate)    
+
+
+
+    }
+
+    const like =async (gra)=>{
+        const likes = await pb.collection("gry").update(gra.id, 
+            { "like+":1}
+        )
+        
+            updateItem(likes)
+            
+        }
+        
+    
+
+    const dislike =async (gra)=>{
+       
+
+        const likes = await pb.collection("gry").update(gra.id, 
+            { "dislike+":1}
+        )
+        
+            updateItem(likes)
+        
+    }
+
+
+
     return (
     
     <div className=' w-full h-screen'>
@@ -85,9 +171,14 @@ getData();
     height={200}
     
     />
-  </CardContent>
-  <CardFooter>
     Cena: {gra.cena}zł
+  </CardContent>
+  <CardFooter className={"w-full flex justify-end"}>
+  <Button variant="ghost" onClick={()=>like(gra)}>{gra.like}<ThumbsUp/></Button>
+  <Button variant="ghost" onClick={()=>dislike(gra)}>{gra.dislike}<ThumbsDown/></Button>
+    <EditItem gra={gra} onUpdate={updateItem} />
+    <Button variant="ghost" onClick={() => kill(gra.id)}><Trash2 /></Button>
+    
   </CardFooter>
 </Card>
      )}
@@ -106,8 +197,8 @@ getData();
       <Label htmlFor="opis">Opis</Label>
       <Input onChange={(e)=>{form(e, "opis")}} type="text" id="opis" placeholder="Opis gry..." />
 
-      {/* <Label htmlFor="zdjecie">Zdjecie</Label>
-      <Input type="file" id="zdjecie" placeholder="Zdjecie gry..." /> */}
+      <Label htmlFor="zdjecie">Zdjecie</Label>
+      <Input onChange={(e)=>{handleZdjecie(e)}} type="file" id="zdjecie" placeholder="Zdjecie gry..." />
       
       <Button onClick={zapisz}>Dodaj gre</Button>
       </Card>
