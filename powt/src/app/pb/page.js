@@ -64,7 +64,6 @@ export default function pb() {
   useEffect(() => {
     const getData = async () => {
       try {
-        // you can also fetch all records at once via getFullList
         const records = await pb.collection("gry").getFullList({
           sort: "-created",
         });
