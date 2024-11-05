@@ -59,7 +59,7 @@ export default function pb() {
     }
   };
 
-  const pb = new PocketBase("http://172.16.15.149:8080");
+  const pb = new PocketBase("http://192.168.89.140:8080"); //ip szkolne: http://172.16.15.149:8080, ip domowe: http://192.168.89.140:8080
 
   useEffect(() => {
     const getData = async () => {

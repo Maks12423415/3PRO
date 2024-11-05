@@ -24,7 +24,7 @@ import PocketBase from "pocketbase";
 import { Trigger } from "@radix-ui/react-dialog";
 
 export default function DialogDemo({ gra, onUpdate }) {
-  const pb = new PocketBase("http://172.16.15.149:8080");
+  const pb = new PocketBase("http://192.168.89.140:8080"); //ip szkolne: http://172.16.15.149:8080, ip domowe: http://192.168.89.140:8080
   const [dane, setDane] = useState({
     nazwa: gra.nazwa,
     cena: gra.cena,
