@@ -137,6 +137,7 @@ export default function pb() {
                     alt={gra.zdjecie}
                     width={300}
                     height={200}
+                    className="w-[300px] h-[200px]"
                   />
                   Cena: {gra.cena}zł
                 </CardContent>
