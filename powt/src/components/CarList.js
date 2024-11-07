@@ -3,7 +3,7 @@ import CarCard from "./CarCard"; // Import komponentu pojedynczej karty samochod
 
 export default function CarList({ data, onDelete, onUpdate, onToggleStatus }) {
   return (
-    <div className="flex flex-wrap space-x-10 p-10">
+    <div className="flex flex-wrap space-x-10 p-10 items-center gap-10">
       {/* Iteracja po danych samochodów i renderowanie komponentów CarCard */}
       {data.map((car) => (
         <CarCard

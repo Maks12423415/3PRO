@@ -26,7 +26,7 @@ export default function CarCard({ car, onDelete, onUpdate, onToggleStatus }) {
   // Stan przechowujący tryb edycji oraz dane samochodu
   const [isEditing, setIsEditing] = useState(false); // Przełącznik trybu edycji
   const [editedCar, setEditedCar] = useState({ ...car }); // Przechowuje dane samochodu w trybie edycji
-  const pb = new PocketBase("http://192.168.89.140:8080"); // Tworzenie instancji PocketBase do komunikacji z backendem
+  const pb = new PocketBase("http://172.16.15.149:8080"); // Tworzenie instancji PocketBase do komunikacji z backendem
 
   // Funkcja zapisująca zaktualizowane dane samochodu
   const handleSave = () => {
@@ -101,18 +101,24 @@ export default function CarCard({ car, onDelete, onUpdate, onToggleStatus }) {
             </MenubarTrigger>
             <MenubarContent>
               {/* Opcje menu */}
-              <MenubarItem onClick={() => setIsEditing(!isEditing)}>
+              <MenubarItem
+                className="justify-between"
+                onClick={() => setIsEditing(!isEditing)}
+              >
                 {/* Przełącza tryb edycji (Edytuj / Anuluj) */}
                 {isEditing ? "Cancel" : "Edit"} <Pencil />
               </MenubarItem>
               {/* Jeśli jesteśmy w trybie edycji, pojawia się opcja zapisania */}
               {isEditing && (
-                <MenubarItem onClick={handleSave}>
+                <MenubarItem className="justify-between" onClick={handleSave}>
                   Save <Save /> {/* Ikona zapisu */}
                 </MenubarItem>
               )}
               {/* Opcja usunięcia samochodu */}
-              <MenubarItem onClick={() => onDelete(car.id)}>
+              <MenubarItem
+                className="justify-between"
+                onClick={() => onDelete(car.id)}
+              >
                 Delete <Trash2 /> {/* Ikona usuwania */}
               </MenubarItem>
             </MenubarContent>

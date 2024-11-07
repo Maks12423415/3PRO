@@ -12,7 +12,7 @@ export default function DB() {
   const [dane, setDane] = useState({ Marka: "", Model: "", Zdj: "" });
 
   // Połączenie z bazą danych PocketBase
-  const pb = new PocketBase("http://192.168.89.140:8080");
+  const pb = new PocketBase("http://172.16.15.149:8080"); //http://172.16.15.149:8080, dom: http://192.168.89.140:8080
 
   // Hook useEffect do pobierania danych z PocketBase przy pierwszym renderowaniu
   useEffect(() => {

@@ -15,11 +15,21 @@ import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
 import { Pencil, ThumbsDown, ThumbsUp, Trash2 } from "lucide-react";
 import EditItem from "@/components/EditItem";
+import Login from "src/components/loginAvatar";
 
 export default function pb() {
   const [data, setData] = useState([]);
   const [dane, setDane] = useState({ nazwa: null, cena: null, opis: null });
   const [zdjecie, setZdjecie] = useState(null);
+  const [user, setUser] = useState(null);
+
+  useEffect(() => {
+    setUser(pb.authStore.model);
+  }, []);
+
+  const log = (user_pb) => {
+    setUser(user_pb);
+  };
 
   const form = (e, nazwa) => {
     setDane((prevDane) => {
@@ -59,7 +69,7 @@ export default function pb() {
     }
   };
 
-  const pb = new PocketBase("http://192.168.89.140:8080"); //ip szkolne: http://172.16.15.149:8080, ip domowe: http://192.168.89.140:8080
+  const pb = new PocketBase("http://172.16.15.149:8080"); //ip szkolne: http://172.16.15.149:8080, ip domowe: http://192.168.89.140:8080
 
   useEffect(() => {
     const getData = async () => {
@@ -108,8 +118,10 @@ export default function pb() {
 
   return (
     <div className=" w-full h-screen">
+      <Login onLogin={log} />
       <div className="flex flex-row justify-center flex-wrap   w-full h-[70vh]  gap-10 space-x-10 mt-5">
-        {data &&
+        {user ? (
+          data &&
           data.map((gra) => {
             return (
               <Card key={gra.id} className="w-[300px] h-[400px]">
@@ -144,7 +156,10 @@ export default function pb() {
                 </CardFooter>
               </Card>
             );
-          })}
+          })
+        ) : (
+          <div>Zaloguj się aby wyswietlić grę!</div>
+        )}
       </div>
       <div className="flex  w-full h-[30vh] justify-center items-center ">
         <Card className="w-[500px] p-5 gap-3">
