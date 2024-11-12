@@ -66,6 +66,9 @@ export default function Login({ onLogin }) {
               <DropdownMenuItem>Login</DropdownMenuItem>
             </Link>
           )}
+          <Link href={"/strona1/settin"}>
+            <DropdownMenuItem>Settings</DropdownMenuItem>
+          </Link>
           {user && <DropdownMenuItem onClick={logout}>Logout</DropdownMenuItem>}
         </DropdownMenuContent>
       </DropdownMenu>

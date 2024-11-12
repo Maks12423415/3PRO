@@ -25,7 +25,7 @@ export default function Log() {
     try {
       const authData = await pb
         .collection("users")
-        .authWithPassword("test", "12345678");
+        .authWithPassword(login, password);
       router.push("/strona1");
       console.log(authData);
     } catch (error) {
