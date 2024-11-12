@@ -7,9 +7,5 @@ export default function Strona2() {
     setUser(pb.authStore.model);
   }, []);
 
-  return (
-    <div>
-      <h1>Strona2</h1>
-    </div>
-  );
+  return <div>{user ? <h1>Strona2</h1> : ""}</div>;
 }
