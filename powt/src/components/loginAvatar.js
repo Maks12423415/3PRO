@@ -62,7 +62,7 @@ export default function Login({ onLogin }) {
           <DropdownMenuLabel>My Account</DropdownMenuLabel>
           <DropdownMenuSeparator />
           {!user && (
-            <Link href={"/pb/login"}>
+            <Link href={"/strona1/login"}>
               <DropdownMenuItem>Login</DropdownMenuItem>
             </Link>
           )}
