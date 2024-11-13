@@ -13,7 +13,7 @@ import PocketBase from "pocketbase";
 import { useEffect, useState } from "react";
 
 export default function Login({ onLogin }) {
-  const pb = new PocketBase("http://172.16.15.149:8080");
+  const pb = new PocketBase("http://192.168.89.140:8080");
   const [user, setUser] = useState(null);
 
   useEffect(() => {
