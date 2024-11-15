@@ -7,7 +7,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { Button } from "src/components/ui/button";
 import { Input } from "src/components/ui/input";
 import { Label } from "src/components/ui/label";
@@ -15,13 +15,16 @@ import PocketBase from "pocketbase";
 import { useRouter } from "next/navigation";
 
 export default function Log() {
-  const pb = new PocketBase("http://172.16.15.149:8080");
+  const pb = new PocketBase("http://192.168.89.140:8080");
   const [login, setLogin] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState(false);
   const router = useRouter();
 
   const handleButtonClick = async () => {
+    console.log(login);
+    console.log(password);
+    setError(false);
     try {
       const authData = await pb
         .collection("users")
@@ -48,6 +51,9 @@ export default function Log() {
             type="password"
             onChange={(e) => setPassword(e.target.value)}
           />
+          {error && (
+            <p className="text-red-500 mt-2">Invalid username or password</p>
+          )}
         </CardContent>
         <CardFooter>
           <Button onClick={handleButtonClick}>Login</Button>
